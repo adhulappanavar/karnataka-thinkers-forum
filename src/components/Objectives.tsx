@@ -118,11 +118,10 @@ export const Objectives: React.FC<ObjectivesProps> = ({ lang }) => {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px]">
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-start text-[11px]">
                 <span className="font-semibold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-md">
                   {obj.category}
                 </span>
-                <span className="text-slate-400 font-mono">Sec. 3(b)</span>
               </div>
             </div>
           ))}
