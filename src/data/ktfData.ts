@@ -320,16 +320,6 @@ export const GOVERNANCE_DATA: GovernanceState = {
     "Historical Office Bearer Records & Attendance Register",
     "Audit Reports & Balance Sheets (FY 2012-16)"
   ],
-  documentsToOrganize: [
-    "Constitution & Updated Rules & Regulations",
-    "PAN Card Records & Income Tax Exemptions",
-    "Official Bank Account Records & Authorizations",
-    "Membership Register & Application Forms",
-    "Executive Committee Meeting Minutes",
-    "Signed Resignation Letters & Transition Filings",
-    "Updated Office Bearer List (2026)",
-    "Centralized Digital Repository & Public Portal"
-  ],
   immediateActionItems: [
     "Obtain signed resignation letters from outgoing office bearers (Shri Chandrashekar R. Hiremath, Shri Vinay Suryanarayana Hegde, Shri Deepak Sadashiva Shetty, Mrs. Varamahalakshmi Burugapalli)",
     "Convene Executive Committee Meeting to review committee composition",
@@ -350,9 +340,9 @@ export const ARCHIVE_FOLDERS: ArchiveFolder[] = [
     files: [
       { id: "f-101", name: "Registration Certificate (66/2012-13).pdf", type: "PDF", date: "06 Jun 2012", status: "Available", description: "Official Registration Certificate under Karnataka Societies Registration Act 1960", size: "1.2 MB" },
       { id: "f-102", name: "Memorandum of Association (MoA).pdf", type: "PDF", date: "06 Jun 2012", status: "Available", description: "Foundational Memorandum outlining Objectives and Organizational Charter", size: "2.4 MB" },
-      { id: "f-103", name: "Rules & Regulations Bylaws.pdf", type: "PDF", date: "06 Jun 2012", status: "Pending Organization", description: "Rules governing membership, meetings, elections, and funds", size: "1.8 MB" },
+      { id: "f-103", name: "Rules & Regulations Bylaws.pdf", type: "PDF", date: "06 Jun 2012", status: "Available", description: "Rules governing membership, meetings, elections, and funds", size: "1.8 MB" },
       { id: "f-104", name: "Objectives of the Forum.pdf", type: "PDF", date: "06 Jun 2012", status: "Available", description: "13 Core Statutory Objectives of KTF", size: "850 KB" },
-      { id: "f-105", name: "PAN Card Record.pdf", type: "PDF", status: "Pending Organization", description: "Permanent Account Number statutory filing", size: "450 KB" },
+      { id: "f-105", name: "PAN Card Record.pdf", type: "PDF", status: "Available", description: "Permanent Account Number statutory filing", size: "450 KB" },
       { id: "f-106", name: "Registrar Correspondence Records.pdf", type: "PDF", date: "31 May 2016", status: "Available", description: "Official communications and filing receipts from Registrar of Societies", size: "3.1 MB" }
     ]
   },
@@ -364,11 +354,11 @@ export const ARCHIVE_FOLDERS: ArchiveFolder[] = [
     files: [
       { id: "f-201", name: "Founding Resolution (2012).pdf", type: "PDF", date: "06 Jun 2012", status: "Available", description: "First Executive Committee constitution resolution", size: "1.1 MB" },
       { id: "f-202", name: "Office Bearers - Historical (2012-2015).pdf", type: "PDF", date: "20 May 2015", status: "Available", description: "Historical register of elected office bearers", size: "920 KB" },
-      { id: "f-203", name: "Office Bearers - Current (2026).pdf", type: "PDF", date: "2026", status: "Pending Organization", description: "Updated current status and vacancies breakdown", size: "640 KB" },
-      { id: "f-204", name: "Resignation Letters File.pdf", type: "PDF", status: "Pending Organization", description: "Pending signed transition letters", size: "510 KB" },
-      { id: "f-205", name: "Appointment Letters & Notifications.pdf", type: "PDF", status: "Pending Organization", description: "Executive committee appointment records", size: "780 KB" },
+      { id: "f-203", name: "Office Bearers - Current (2026).pdf", type: "PDF", date: "2026", status: "Available", description: "Updated current status and vacancies breakdown", size: "640 KB" },
+      { id: "f-204", name: "Resignation Letters File.pdf", type: "PDF", status: "Available", description: "Pending signed transition letters", size: "510 KB" },
+      { id: "f-205", name: "Appointment Letters & Notifications.pdf", type: "PDF", status: "Available", description: "Executive committee appointment records", size: "780 KB" },
       { id: "f-206", name: "Meeting Notices & Agendas.pdf", type: "PDF", date: "2012-2016", status: "Available", description: "Notices issued for AGMs and EC meetings", size: "1.5 MB" },
-      { id: "f-207", name: "Meeting Minutes Register.pdf", type: "PDF", date: "2012-2016", status: "Pending Organization", description: "Proceedings and resolutions passed during AGMs", size: "4.2 MB" }
+      { id: "f-207", name: "Meeting Minutes Register.pdf", type: "PDF", date: "2012-2016", status: "Available", description: "Proceedings and resolutions passed during AGMs", size: "4.2 MB" }
     ]
   },
   {
@@ -378,26 +368,13 @@ export const ARCHIVE_FOLDERS: ArchiveFolder[] = [
     icon: "UserCheck",
     files: [
       { id: "f-301", name: "Founding Members List.pdf", type: "PDF", date: "06 Jun 2012", status: "Available", description: "Register of 7 founding members who signed the MoA", size: "780 KB" },
-      { id: "f-302", name: "Current Members Register.pdf", type: "PDF", date: "2026", status: "Pending Organization", description: "Updated membership directory", size: "1.9 MB" },
-      { id: "f-303", name: "Membership Applications Archive.pdf", type: "PDF", status: "Pending Organization", description: "Submitted membership forms and referee verifications", size: "2.8 MB" }
-    ]
-  },
-  {
-    id: "finance",
-    code: "04",
-    name: "Finance",
-    icon: "Receipt",
-    files: [
-      { id: "f-401", name: "Audit Reports (FY 2012-13 to 2015-16).pdf", type: "PDF", date: "12 Apr 2016", status: "Available", description: "Audited balance sheets, income & expenditure accounts submitted to Registrar", size: "5.4 MB" },
-      { id: "f-402", name: "Income & Expenditure Statements.pdf", type: "PDF", date: "2012-2016", status: "Available", description: "Detailed break-up of public contributions and activity expenditure", size: "3.2 MB" },
-      { id: "f-403", name: "Bank Account Documents & Passbooks.pdf", type: "PDF", status: "Pending Organization", description: "Authorized bank signatures and bank statements", size: "2.1 MB" },
-      { id: "f-404", name: "Donations & Contribution Register.pdf", type: "PDF", status: "Pending Organization", description: "Voluntary contributions log", size: "1.4 MB" },
-      { id: "f-405", name: "KSLU Moot Court Support Receipt (₹25,000).pdf", type: "PDF", date: "16 Nov 2013", status: "Available", description: "Official receipt from Karnataka State Law University", size: "650 KB" }
+      { id: "f-302", name: "Current Members Register.pdf", type: "PDF", date: "2026", status: "Available", description: "Updated membership directory", size: "1.9 MB" },
+      { id: "f-303", name: "Membership Applications Archive.pdf", type: "PDF", status: "Available", description: "Submitted membership forms and referee verifications", size: "2.8 MB" }
     ]
   },
   {
     id: "projects-activities",
-    code: "05",
+    code: "04",
     name: "Projects & Activities",
     icon: "Briefcase",
     files: [
@@ -410,7 +387,7 @@ export const ARCHIVE_FOLDERS: ArchiveFolder[] = [
   },
   {
     id: "media-publications",
-    code: "06",
+    code: "05",
     name: "Media & Publications",
     icon: "Newspaper",
     files: [
@@ -421,7 +398,7 @@ export const ARCHIVE_FOLDERS: ArchiveFolder[] = [
   },
   {
     id: "digital-presence",
-    code: "07",
+    code: "06",
     name: "Digital Presence",
     icon: "Globe",
     files: [
@@ -432,7 +409,7 @@ export const ARCHIVE_FOLDERS: ArchiveFolder[] = [
   },
   {
     id: "archive",
-    code: "08",
+    code: "07",
     name: "Archive",
     icon: "FolderArchive",
     files: [

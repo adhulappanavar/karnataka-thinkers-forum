@@ -138,72 +138,22 @@ export const GovernanceSection: React.FC<GovernanceSectionProps> = ({ lang, onOp
 
         </div>
 
-        {/* Action Items & Document Status Box */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
-          {/* Immediate Action Items (PDF page 8-9) */}
-          <div className="lg:col-span-7 bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-4">
-            <div className="flex items-center gap-3 border-b border-slate-800 pb-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
-                <ListChecks className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-400">PDF Section 09</span>
-                <h3 className="text-lg font-bold text-white">Immediate Administrative Action Plan</h3>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {GOVERNANCE_DATA.immediateActionItems.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-slate-800/80 border border-slate-700">
-                  <span className="shrink-0 w-6 h-6 rounded-full bg-amber-600 text-white font-extrabold text-xs flex items-center justify-center mt-0.5">
-                    {idx + 1}
-                  </span>
-                  <p className="text-xs text-slate-200 leading-relaxed font-medium">
-                    {item}
-                  </p>
-                </div>
+        {/* Document Status Box */}
+        <div className="mt-12">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-emerald-200 dark:border-emerald-950 shadow-sm space-y-3">
+            <h4 className="text-sm font-bold text-emerald-800 dark:text-emerald-400 flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+              <span>Documents Verified & Available</span>
+            </h4>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              {GOVERNANCE_DATA.documentsAvailable.map((doc, idx) => (
+                <li key={idx} className="text-xs text-slate-700 dark:text-slate-300 flex items-center gap-2 bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                  <span>{doc}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-
-          {/* Document Status Checklists */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            {/* Available Docs */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-emerald-200 dark:border-emerald-950 shadow-sm space-y-3">
-              <h4 className="text-sm font-bold text-emerald-800 dark:text-emerald-400 flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                <span>Documents Verified & Available</span>
-              </h4>
-              <ul className="space-y-2">
-                {GOVERNANCE_DATA.documentsAvailable.map((doc, idx) => (
-                  <li key={idx} className="text-xs text-slate-700 dark:text-slate-300 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                    <span>{doc}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Docs to be Organized */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-amber-200 dark:border-amber-950 shadow-sm space-y-3">
-              <h4 className="text-sm font-bold text-amber-800 dark:text-amber-400 flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-amber-600" />
-                <span>Documents Being Organized</span>
-              </h4>
-              <ul className="space-y-2">
-                {GOVERNANCE_DATA.documentsToOrganize.slice(0, 5).map((doc, idx) => (
-                  <li key={idx} className="text-xs text-slate-700 dark:text-slate-300 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
-                    <span>{doc}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-          </div>
-
         </div>
 
       </div>

@@ -10,7 +10,7 @@ interface ArchiveExplorerProps {
 export const ArchiveExplorer: React.FC<ArchiveExplorerProps> = ({ lang }) => {
   const [selectedFolder, setSelectedFolder] = useState<ArchiveFolder>(ARCHIVE_FOLDERS[0]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<'All' | 'Available' | 'Pending Organization' | 'Archived'>('All');
+  const [statusFilter, setStatusFilter] = useState<'All' | 'Available' | 'Archived'>('All');
   const [previewFile, setPreviewFile] = useState<ArchiveFile | null>(null);
   const [downloadSuccessMessage, setDownloadSuccessMessage] = useState<string | null>(null);
 
@@ -33,10 +33,10 @@ export const ArchiveExplorer: React.FC<ArchiveExplorerProps> = ({ lang }) => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300">
-            {lang === 'KN' ? '೮ ವರ್ಗಗಳ ಡಿಜಿಟಲ್ ಪೋರ್ಟಲ್' : 'Official Document Repository'}
+            {lang === 'KN' ? '೭ ವರ್ಗಗಳ ಡಿಜಿಟಲ್ ಪೋರ್ಟಲ್' : 'Official Document Repository'}
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-            {lang === 'KN' ? '೮ ವಿಭಾಗಗಳ ಡಿಜಿಟಲ್ ದಾಖಲೆಗಳು' : 'The 8-Folder Digital Archive'}
+            {lang === 'KN' ? '೭ ವಿಭಾಗಗಳ ಡಿಜಿಟಲ್ ದಾಖಲೆಗಳು' : 'The 7-Folder Digital Archive'}
           </h2>
           <p className="text-base text-slate-600 dark:text-slate-400">
             Structured public document hierarchy corresponding directly to Karnataka Thinkers Forum's official organizational filing architecture.
@@ -55,10 +55,10 @@ export const ArchiveExplorer: React.FC<ArchiveExplorerProps> = ({ lang }) => {
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: 8 Folder Navigation Cards */}
+          {/* Left Column: 7 Folder Navigation Cards */}
           <div className="lg:col-span-4 space-y-2.5">
             <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-500 px-2 mb-2">
-              Directory Structure (01 to 08)
+              Directory Structure (01 to 07)
             </h3>
 
             {ARCHIVE_FOLDERS.map((folder) => {
@@ -123,7 +123,7 @@ export const ArchiveExplorer: React.FC<ArchiveExplorerProps> = ({ lang }) => {
             {/* Filter Pills */}
             <div className="flex items-center gap-2 overflow-x-auto text-xs pb-1">
               <span className="text-slate-400 font-medium text-[11px] shrink-0">Status Filter:</span>
-              {(['All', 'Available', 'Pending Organization', 'Archived'] as const).map((status) => (
+              {(['All', 'Available', 'Archived'] as const).map((status) => (
                 <button
                   key={status}
                   onClick={() => setStatusFilter(status)}
@@ -168,8 +168,6 @@ export const ArchiveExplorer: React.FC<ArchiveExplorerProps> = ({ lang }) => {
                     <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
                       file.status === 'Available'
                         ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
-                        : file.status === 'Pending Organization'
-                        ? 'bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300'
                         : 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
                     }`}>
                       {file.status}

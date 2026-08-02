@@ -41,7 +41,6 @@ export interface GovernanceState {
   currentStatusYear: string;
   currentOfficeBearers: OfficeBearer[];
   documentsAvailable: string[];
-  documentsToOrganize: string[];
   immediateActionItems: string[];
 }
 
@@ -50,7 +49,7 @@ export interface ArchiveFile {
   name: string;
   type: string;
   date?: string;
-  status: 'Available' | 'Pending Organization' | 'Archived';
+  status: 'Available' | 'Archived';
   description?: string;
   size?: string;
 }
