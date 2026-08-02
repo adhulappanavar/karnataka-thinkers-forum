@@ -133,9 +133,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Logo */}
           <button
             onClick={() => handleNavClick('overview')}
-            className="text-left focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg p-1"
+            className="text-left focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg p-1 shrink-0 my-auto"
           >
-            <KtfLogo size={52} showText={true} />
+            <KtfLogo size={44} showText={true} />
           </button>
 
           {/* Desktop Navigation */}
