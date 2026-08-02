@@ -47,7 +47,7 @@ export default function App() {
   };
 
   const handleNavClick = (sectionId: string) => {
-    if (sectionId === 'archive' && !isAdminAuthenticated) {
+    if ((sectionId === 'archive' || sectionId === 'timeline') && !isAdminAuthenticated) {
       setIsAdminModalOpen(true);
       return;
     }
@@ -96,8 +96,45 @@ export default function App() {
         {/* 13 Statutory Objectives */}
         <Objectives lang={lang} />
 
-        {/* Chronological Timeline & Milestones */}
-        <TimelineSection lang={lang} />
+        {/* Chronological Timeline & Milestones (Admin Protected) */}
+        {isAdminAuthenticated ? (
+          <TimelineSection lang={lang} />
+        ) : (
+          <section id="timeline" className="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <div className="p-8 sm:p-12 rounded-3xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-5 shadow-sm">
+                <div className="w-16 h-16 rounded-2xl bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 flex items-center justify-center mx-auto shadow-sm">
+                  <Lock className="w-8 h-8" />
+                </div>
+
+                <div className="space-y-2">
+                  <span className="text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-400">
+                    Admin Portal Protected
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                    {lang === 'KN' ? 'ಇತಿಹಾಸ & ಸಾಧನೆಗಳು (ಆಡಳಿತ ಮಂಡಳಿಗೆ ಮಾತ್ರ)' : 'Chronological Journey of Action (Admin Restricted)'}
+                  </h3>
+                </div>
+
+                <p className="text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
+                  {lang === 'KN'
+                    ? 'ಈ ಸಾಲಿನ ಇತಿಹಾಸ ಮತ್ತು ಸಾಧನೆಗಳ ವಿವರವು ಆಡಳಿತ ಮಂಡಳಿಯ ಪದಾಧಿಕಾರಿಗಳಿಗೆ ಮಾತ್ರ ಲಭ್ಯವಿದೆ. ವೀಕ್ಷಿಸಲು ಆಡಳಿತ ಲಾಗಿನ್ ಮಾಡಿ.'
+                    : 'The detailed chronological record of interventions, representations, and statutory milestones is reserved exclusively for authorized Forum Office Bearers.'}
+                </p>
+
+                <div className="pt-2">
+                  <button
+                    onClick={() => setIsAdminModalOpen(true)}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 transition-all shadow-md active:scale-95"
+                  >
+                    <KeyRound className="w-4 h-4" />
+                    <span>{lang === 'KN' ? 'ಆಡಳಿತ ಲಾಗಿನ್ ಮಾಡಿ' : 'Unlock Admin Portal Access'}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Governance & Leadership Committee */}
         <GovernanceSection

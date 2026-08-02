@@ -31,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'overview', label: lang === 'KN' ? 'ಮುಖಪುಟ' : 'Overview', icon: Building },
     { id: 'focus-areas', label: lang === 'KN' ? '5 ಪ್ರಮುಖ ಕ್ಷೇತ್ರಗಳು' : '5 Focus Areas', icon: Scale },
     { id: 'objectives', label: lang === 'KN' ? 'ಉದ್ದೇಶಗಳು' : '13 Objectives', icon: FileText },
-    { id: 'timeline', label: lang === 'KN' ? 'ಇತಿಹಾಸ & ಸಾಧನೆಗಳು' : 'History & Timeline', icon: FileText },
+    { id: 'timeline', label: lang === 'KN' ? 'ಇತಿಹಾಸ & ಸಾಧನೆಗಳು' : 'History & Timeline', icon: FileText, isProtected: true },
     { id: 'governance', label: lang === 'KN' ? 'ಆಡಳಿತ ಮಂಡಳಿ' : 'Governance', icon: Users },
     { id: 'archive', label: lang === 'KN' ? 'ಡಿಜಿಟಲ್ ದಾಖಲೆಗಳು' : 'Digital Archive', icon: FileText, isProtected: true },
   ];
