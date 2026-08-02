@@ -1,41 +1,51 @@
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
-
 :root {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Common Body & Transitions */
+/* Common Body & Smooth Transitions */
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   min-height: 100vh;
-  background-color: var(--theme-bg, #0f172a);
-  color: var(--theme-text, #f8fafc);
 }
 
-/* Smooth theme transitions */
 *, ::before, ::after {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
 }
 
-/* ==========================================
-   1. Classic Dark (Default Slate 900 / Gold)
-   ========================================== */
+/* =========================================================
+   TAILWIND V4 DYNAMIC COLOR PALETTE OVERRIDES PER THEME
+   ========================================================= */
+
+/* 1. Classic Slate & Gold (Default Dark) */
 html[data-theme="classic-dark"] {
-  --theme-bg: #0f172a;
-  --theme-text: #f8fafc;
+  --color-slate-950: #020617;
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-100: #f8fafc;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
 }
 
-/* ==========================================
-   2. Clean Light Theme (Pristine White & Slate)
-   ========================================== */
+/* 2. Clean Light (High-Contrast Corporate Light Theme) */
 html[data-theme="clean-light"] {
-  --theme-bg: #f8fafc;
-  --theme-text: #0f172a;
+  --color-slate-950: #f8fafc;
+  --color-slate-900: #ffffff;
+  --color-slate-800: #f1f5f9;
+  --color-slate-700: #e2e8f0;
+  --color-slate-100: #0f172a;
+  --color-slate-200: #334155;
+  --color-slate-300: #1e293b;
+  --color-slate-400: #475569;
+  --color-slate-50: #e2e8f0;
+  --color-amber-950: #fef3c7;
+  --color-amber-900: #78350f;
 }
 
 html[data-theme="clean-light"] body {
@@ -43,179 +53,85 @@ html[data-theme="clean-light"] body {
   color: #0f172a !important;
 }
 
-/* ==========================================
-   3. Royal Karnataka (Maroon & Saffron Dark)
-   ========================================== */
+/* 3. Royal Karnataka (Crimson Maroon, Saffron & Gold Dark) */
 html[data-theme="royal-dark"] {
-  --theme-bg: #18080c;
-  --theme-text: #fff1f2;
+  --color-slate-950: #150609;
+  --color-slate-900: #240c13;
+  --color-slate-800: #38131e;
+  --color-slate-700: #4d1a29;
+  --color-slate-100: #fff1f2;
+  --color-slate-200: #fecdd3;
+  --color-slate-300: #fda4af;
+  --color-slate-400: #f43f5e;
+  --color-amber-600: #ea580c;
+  --color-amber-500: #f97316;
+  --color-amber-400: #fbbf24;
 }
 
 html[data-theme="royal-dark"] body {
-  background-color: #18080c !important;
+  background-color: #150609 !important;
   color: #fff1f2 !important;
 }
 
-html[data-theme="royal-dark"] .dark\:bg-slate-900,
-html[data-theme="royal-dark"] [class*="bg-slate-900"] {
-  background-color: #240c13 !important;
-}
-
-html[data-theme="royal-dark"] .dark\:bg-slate-950,
-html[data-theme="royal-dark"] [class*="bg-slate-950"] {
-  background-color: #150609 !important;
-}
-
-html[data-theme="royal-dark"] .dark\:bg-slate-800,
-html[data-theme="royal-dark"] [class*="bg-slate-800"] {
-  background-color: #38131e !important;
-}
-
-html[data-theme="royal-dark"] [class*="from-slate-900"] {
-  --tw-gradient-from: #150609 !important;
-  --tw-gradient-to: #240c13 !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-html[data-theme="royal-dark"] [class*="to-slate-950"] {
-  --tw-gradient-to: #150609 !important;
-}
-
-html[data-theme="royal-dark"] [class*="via-slate-900"] {
-  --tw-gradient-via: #240c13 !important;
-}
-
-html[data-theme="royal-dark"] [class*="border-slate-800"] {
-  border-color: rgba(249, 115, 22, 0.3) !important;
-}
-
-html[data-theme="royal-dark"] [class*="border-slate-700"] {
-  border-color: rgba(249, 115, 22, 0.4) !important;
-}
-
-/* ==========================================
-   4. Emerald Forum (Forest Emerald Dark)
-   ========================================== */
+/* 4. Emerald Forum (Deep Forest Emerald & Mint Dark) */
 html[data-theme="emerald-dark"] {
-  --theme-bg: #061a14;
-  --theme-text: #ecfdf5;
+  --color-slate-950: #04120e;
+  --color-slate-900: #0a241b;
+  --color-slate-800: #103629;
+  --color-slate-700: #194a39;
+  --color-slate-100: #ecfdf5;
+  --color-slate-200: #a7f3d0;
+  --color-slate-300: #6ee7b7;
+  --color-slate-400: #34d399;
+  --color-amber-600: #059669;
+  --color-amber-500: #10b981;
+  --color-amber-400: #34d399;
 }
 
 html[data-theme="emerald-dark"] body {
-  background-color: #061a14 !important;
+  background-color: #04120e !important;
   color: #ecfdf5 !important;
 }
 
-html[data-theme="emerald-dark"] .dark\:bg-slate-900,
-html[data-theme="emerald-dark"] [class*="bg-slate-900"] {
-  background-color: #0c2b21 !important;
-}
-
-html[data-theme="emerald-dark"] .dark\:bg-slate-950,
-html[data-theme="emerald-dark"] [class*="bg-slate-950"] {
-  background-color: #051812 !important;
-}
-
-html[data-theme="emerald-dark"] .dark\:bg-slate-800,
-html[data-theme="emerald-dark"] [class*="bg-slate-800"] {
-  background-color: #133a2d !important;
-}
-
-html[data-theme="emerald-dark"] [class*="from-slate-900"] {
-  --tw-gradient-from: #051812 !important;
-  --tw-gradient-to: #0c2b21 !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-html[data-theme="emerald-dark"] [class*="to-slate-950"] {
-  --tw-gradient-to: #051812 !important;
-}
-
-html[data-theme="emerald-dark"] [class*="via-slate-900"] {
-  --tw-gradient-via: #0c2b21 !important;
-}
-
-html[data-theme="emerald-dark"] [class*="border-slate-800"] {
-  border-color: rgba(16, 185, 129, 0.3) !important;
-}
-
-html[data-theme="emerald-dark"] [class*="border-slate-700"] {
-  border-color: rgba(16, 185, 129, 0.4) !important;
-}
-
-/* ==========================================
-   5. Midnight Sapphire (Indigo Ocean Dark)
-   ========================================== */
+/* 5. Midnight Sapphire (Ocean Indigo & Electric Cyan Dark) */
 html[data-theme="sapphire-dark"] {
-  --theme-bg: #090d1e;
-  --theme-text: #f0f9ff;
+  --color-slate-950: #070a17;
+  --color-slate-900: #0f1530;
+  --color-slate-800: #162045;
+  --color-slate-700: #202d5e;
+  --color-slate-100: #f0f9ff;
+  --color-slate-200: #bae6fd;
+  --color-slate-300: #7dd3fc;
+  --color-slate-400: #38bdf8;
+  --color-amber-600: #0284c7;
+  --color-amber-500: #38bdf8;
+  --color-amber-400: #60a5fa;
 }
 
 html[data-theme="sapphire-dark"] body {
-  background-color: #090d1e !important;
+  background-color: #070a17 !important;
   color: #f0f9ff !important;
 }
 
-html[data-theme="sapphire-dark"] .dark\:bg-slate-900,
-html[data-theme="sapphire-dark"] [class*="bg-slate-900"] {
-  background-color: #111836 !important;
-}
-
-html[data-theme="sapphire-dark"] .dark\:bg-slate-950,
-html[data-theme="sapphire-dark"] [class*="bg-slate-950"] {
-  background-color: #080c1d !important;
-}
-
-html[data-theme="sapphire-dark"] .dark\:bg-slate-800,
-html[data-theme="sapphire-dark"] [class*="bg-slate-800"] {
-  background-color: #18234a !important;
-}
-
-html[data-theme="sapphire-dark"] [class*="from-slate-900"] {
-  --tw-gradient-from: #080c1d !important;
-  --tw-gradient-to: #111836 !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-}
-
-html[data-theme="sapphire-dark"] [class*="to-slate-950"] {
-  --tw-gradient-to: #080c1d !important;
-}
-
-html[data-theme="sapphire-dark"] [class*="via-slate-900"] {
-  --tw-gradient-via: #111836 !important;
-}
-
-html[data-theme="sapphire-dark"] [class*="border-slate-800"] {
-  border-color: rgba(56, 189, 248, 0.3) !important;
-}
-
-html[data-theme="sapphire-dark"] [class*="border-slate-700"] {
-  border-color: rgba(56, 189, 248, 0.4) !important;
-}
-
-/* ==========================================
-   6. Warm Sandstone Light Theme (Ivory & Terracotta)
-   ========================================== */
+/* 6. Warm Sandstone Light Theme (Ivory, Cream & Terracotta) */
 html[data-theme="sandstone-light"] {
-  --theme-bg: #faf8f5;
-  --theme-text: #1c1917;
+  --color-slate-950: #faf8f5;
+  --color-slate-900: #fffdfa;
+  --color-slate-800: #f4efe8;
+  --color-slate-700: #e6dfd5;
+  --color-slate-100: #1c1917;
+  --color-slate-200: #44403c;
+  --color-slate-300: #292524;
+  --color-slate-400: #57534e;
+  --color-slate-50: #e8ded1;
+  --color-amber-600: #c2410c;
+  --color-amber-500: #b45309;
+  --color-amber-400: #d97706;
 }
 
 html[data-theme="sandstone-light"] body {
   background-color: #faf8f5 !important;
   color: #1c1917 !important;
-}
-
-html[data-theme="sandstone-light"] [class*="bg-slate-50"] {
-  background-color: #f4efe8 !important;
-}
-
-html[data-theme="sandstone-light"] [class*="bg-white"] {
-  background-color: #fffdfa !important;
-}
-
-html[data-theme="sandstone-light"] [class*="border-slate-200"] {
-  border-color: #e6dfd5 !important;
 }
 
 /* Custom Scrollbars */
