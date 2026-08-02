@@ -106,10 +106,6 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
           </div>
         </form>
 
-        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 text-[11px] text-slate-500 flex items-center justify-between">
-          <span>Default Passcode for testing: <strong className="font-mono text-amber-700 dark:text-amber-400">KTF2026</strong></span>
-        </div>
-
       </div>
     </div>
   );
