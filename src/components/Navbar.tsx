@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { KtfLogo } from './KtfLogo';
-import { Menu, X, Globe, HeartHandshake, FileText, Users, Building, Scale, Lock, LogOut, ShieldCheck, Award } from 'lucide-react';
+import { Menu, X, Globe, HeartHandshake, FileText, Users, Building, Scale, Lock, LogOut, ShieldCheck, Award, Palette, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 interface NavbarProps {
   activeSection: string;
@@ -12,6 +13,7 @@ interface NavbarProps {
   isAdminAuthenticated: boolean;
   onOpenAdminLogin: () => void;
   onAdminLogout: () => void;
+  onOpenThemeModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -24,8 +26,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   isAdminAuthenticated,
   onOpenAdminLogin,
   onAdminLogout,
+  onOpenThemeModal,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { currentTheme, toggleLightDark } = useTheme();
 
   const navItems = [
     { id: 'overview', label: lang === 'KN' ? 'ಮುಖಪುಟ' : 'Overview', icon: Building },
@@ -63,10 +67,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               Registered under Karnataka Societies Registration Act, 1960 • Dharwad
             </span>
           </div>
-          <div className="flex items-center gap-4 text-[11px]">
+          <div className="flex items-center gap-2 sm:gap-4 text-[11px]">
             <a
               href="mailto:karnatakathinkersforum.india@gmail.com"
-              className="hover:underline text-amber-200 transition-colors flex items-center gap-1"
+              className="hidden md:flex hover:underline text-amber-200 transition-colors items-center gap-1"
             >
               ✉️ karnatakathinkersforum.india@gmail.com
             </a>
@@ -95,6 +99,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span>Admin Login</span>
               </button>
             )}
+
+            {/* Theme Selector Trigger in Top Bar */}
+            <button
+              onClick={onOpenThemeModal}
+              className="inline-flex items-center gap-1.5 bg-amber-950/60 hover:bg-amber-950 px-2.5 py-0.5 rounded font-medium text-amber-200 hover:text-white transition-colors border border-amber-500/40 shadow-xs cursor-pointer"
+              title="Change Theme / ಥೀಮ್ ಬದಲಾಯಿಸಿ"
+            >
+              <Palette className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden sm:inline font-bold">Theme: {currentTheme.name}</span>
+              <span className="sm:hidden font-bold">Theme</span>
+              <span
+                className="w-2 h-2 rounded-full border border-amber-400/50 shrink-0"
+                style={{ backgroundColor: currentTheme.colors.primary }}
+              />
+            </button>
 
             <button
               onClick={() => setLang(lang === 'EN' ? 'KN' : 'EN')}
@@ -145,12 +164,23 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Action Buttons */}
           <div className="hidden lg:flex items-center gap-2.5">
+            {/* Theme Selector Button */}
+            <button
+              onClick={onOpenThemeModal}
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all border border-slate-300/80 dark:border-slate-700"
+              title="Select Theme / ಥೀಮ್‌ಗಳು"
+            >
+              <Palette className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <span>Theme: {currentTheme.badge}</span>
+            </button>
+
             <button
               onClick={onOpenVoiceModal}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all border border-slate-300/80 dark:border-slate-700"
             >
               💬 Submit Issue / Request
             </button>
+
             <button
               onClick={onOpenMembership}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold text-white bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 transition-all shadow-md hover:shadow-lg active:scale-95"
@@ -160,8 +190,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger Button & Quick Theme Switch */}
           <div className="flex xl:hidden items-center gap-2">
+            <button
+              onClick={onOpenThemeModal}
+              className="p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-xs font-bold border border-slate-200 dark:border-slate-700 flex items-center gap-1"
+              title="Theme Switcher"
+            >
+              <Palette className="w-4 h-4 text-amber-500" />
+            </button>
             <button
               onClick={() => setLang(lang === 'EN' ? 'KN' : 'EN')}
               className="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-xs font-bold border border-slate-200 dark:border-slate-700"
@@ -197,6 +234,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           ))}
           <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2.5">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenThemeModal();
+              }}
+              className="w-full text-center py-2.5 px-4 rounded-lg text-xs font-bold text-amber-900 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 flex items-center justify-center gap-2"
+            >
+              <Palette className="w-4 h-4 text-amber-600" />
+              <span>
+                {lang === 'KN' ? 'ಥೀಮ್‌ ಆಯ್ಕೆ (6 Themes)' : `Theme: ${currentTheme.name}`}
+              </span>
+            </button>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);

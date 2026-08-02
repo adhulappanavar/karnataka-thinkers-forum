@@ -1,15 +1,19 @@
 import React from 'react';
 import { KtfLogo } from './KtfLogo';
 import { NGO_PROFILE } from '../data/ktfData';
-import { Mail, MapPin, ShieldCheck, Heart, ExternalLink, Globe, FileText } from 'lucide-react';
+import { Mail, MapPin, ShieldCheck, Heart, ExternalLink, Globe, FileText, Palette } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 interface FooterProps {
   lang: 'EN' | 'KN';
   onNavClick: (section: string) => void;
   onOpenMembership: () => void;
+  onOpenThemeModal?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ lang, onNavClick, onOpenMembership }) => {
+export const Footer: React.FC<FooterProps> = ({ lang, onNavClick, onOpenMembership, onOpenThemeModal }) => {
+  const { currentTheme } = useTheme();
+
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -125,13 +129,23 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavClick, onOpenMembersh
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 space-y-2">
               <button
                 onClick={onOpenMembership}
                 className="w-full py-2.5 px-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs transition-colors shadow-sm"
               >
                 Join as Volunteer / Member
               </button>
+
+              {onOpenThemeModal && (
+                <button
+                  onClick={onOpenThemeModal}
+                  className="w-full py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 font-bold text-xs transition-colors flex items-center justify-center gap-2"
+                >
+                  <Palette className="w-4 h-4 text-amber-400" />
+                  <span>Theme: {currentTheme.name}</span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -143,7 +157,12 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavClick, onOpenMembersh
             © 2012–2026 <strong className="text-slate-300">Karnataka Thinkers Forum (R)</strong>. Registered Society No. 66/2012-13. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-[11px]">
-            <span>Dharwad, Karnataka</span>
+            {onOpenThemeModal && (
+              <button onClick={onOpenThemeModal} className="hover:underline flex items-center gap-1 text-amber-400">
+                <Palette className="w-3 h-3" />
+                Change Theme
+              </button>
+            )}
             <span>•</span>
             <button onClick={() => onNavClick('archive')} className="hover:underline">Statutory Archive</button>
             <span>•</span>
