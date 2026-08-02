@@ -83,3 +83,31 @@ export interface PublicRepresentation {
   dateSubmitted: string;
   status: 'Received' | 'Under Review' | 'Resolution Drafted';
 }
+
+export interface DistrictPresident {
+  districtId: string;
+  districtName: string;
+  districtNameKannada: string;
+  division: 'Belagavi' | 'Bengaluru' | 'Kalaburagi' | 'Mysuru';
+  presidentName?: string;
+  status: 'Appointed' | 'Vacant';
+  appointedDate?: string;
+  contactEmail?: string;
+}
+
+export interface DistrictApplication {
+  id: string;
+  districtName: string;
+  fullName: string;
+  gender: string;
+  age: number;
+  email: string;
+  phone: string;
+  address: string;
+  cityTaluk: string;
+  qualification: string;
+  pastExperience: string;
+  purposeAndIntent: string;
+  submittedDate: string;
+  status: 'Pending' | 'Approved' | 'Rejected';
+}

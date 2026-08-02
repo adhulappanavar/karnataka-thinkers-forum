@@ -3,6 +3,8 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { FocusAreas } from './components/FocusAreas';
 import { Objectives } from './components/Objectives';
+import { DistrictLeadershipSection } from './components/DistrictLeadershipSection';
+import { DistrictPresidentModal } from './components/DistrictPresidentModal';
 import { TimelineSection } from './components/TimelineSection';
 import { GovernanceSection } from './components/GovernanceSection';
 import { ArchiveExplorer } from './components/ArchiveExplorer';
@@ -10,6 +12,8 @@ import { Footer } from './components/Footer';
 import { MembershipModal } from './components/MembershipModal';
 import { PublicVoiceModal } from './components/PublicVoiceModal';
 import { AdminAuthModal } from './components/AdminAuthModal';
+import { KARNATAKA_DISTRICTS_INITIAL, INITIAL_DISTRICT_APPLICATIONS } from './data/ktfData';
+import { DistrictPresident, DistrictApplication } from './types';
 import { Lock, ShieldAlert, KeyRound } from 'lucide-react';
 
 export default function App() {
@@ -18,6 +22,66 @@ export default function App() {
   const [isMembershipOpen, setIsMembershipOpen] = useState(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
   const [prefilledArea, setPrefilledArea] = useState('');
+  
+  // District Leadership & Applications State (with LocalStorage persistence)
+  const [districts, setDistricts] = useState<DistrictPresident[]>(() => {
+    const saved = localStorage.getItem('ktf_districts');
+    return saved ? JSON.parse(saved) : KARNATAKA_DISTRICTS_INITIAL;
+  });
+
+  const [districtApps, setDistrictApps] = useState<DistrictApplication[]>(() => {
+    const saved = localStorage.getItem('ktf_district_apps');
+    return saved ? JSON.parse(saved) : INITIAL_DISTRICT_APPLICATIONS;
+  });
+
+  const [isDistrictModalOpen, setIsDistrictModalOpen] = useState(false);
+  const [selectedDistrictForApply, setSelectedDistrictForApply] = useState('Bagalkote');
+
+  useEffect(() => {
+    localStorage.setItem('ktf_districts', JSON.stringify(districts));
+  }, [districts]);
+
+  useEffect(() => {
+    localStorage.setItem('ktf_district_apps', JSON.stringify(districtApps));
+  }, [districtApps]);
+
+  const handleOpenApplyDistrictModal = (districtName: string) => {
+    setSelectedDistrictForApply(districtName);
+    setIsDistrictModalOpen(true);
+  };
+
+  const handleSubmitDistrictApplication = (appData: Omit<DistrictApplication, 'id' | 'submittedDate' | 'status'>) => {
+    const newApp: DistrictApplication = {
+      ...appData,
+      id: `app-${Date.now()}`,
+      submittedDate: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+      status: 'Pending',
+    };
+    setDistrictApps((prev) => [newApp, ...prev]);
+  };
+
+  const handleApproveDistrictApplication = (applicationId: string, districtId: string, candidateName: string, candidateEmail: string) => {
+    // 1. Update Application Status
+    setDistrictApps((prev) =>
+      prev.map((app) => (app.id === applicationId ? { ...app, status: 'Approved' } : app))
+    );
+
+    // 2. Update District President in Table
+    setDistricts((prev) =>
+      prev.map((d) => {
+        if (d.districtId === districtId || d.districtName.toLowerCase() === candidateName.toLowerCase() || d.districtName.toLowerCase().includes(districtId.replace('-', ' '))) {
+          return {
+            ...d,
+            presidentName: candidateName,
+            status: 'Appointed',
+            appointedDate: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+            contactEmail: candidateEmail,
+          };
+        }
+        return d;
+      })
+    );
+  };
   
   // Admin Authentication State
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
@@ -95,6 +159,16 @@ export default function App() {
 
         {/* 13 Statutory Objectives */}
         <Objectives lang={lang} />
+
+        {/* Karnataka District Leadership Directory (31 Districts) */}
+        <DistrictLeadershipSection
+          districts={districts}
+          applications={districtApps}
+          onOpenApplyModal={handleOpenApplyDistrictModal}
+          onApproveApplication={handleApproveDistrictApplication}
+          isAdminAuthenticated={isAdminAuthenticated}
+          lang={lang}
+        />
 
         {/* Chronological Timeline & Milestones (Admin Protected) */}
         {isAdminAuthenticated ? (
@@ -210,6 +284,16 @@ export default function App() {
         isOpen={isAdminModalOpen}
         onClose={() => setIsAdminModalOpen(false)}
         onAuthenticate={handleAdminAuthenticate}
+        lang={lang}
+      />
+
+      {/* District President Application Modal */}
+      <DistrictPresidentModal
+        isOpen={isDistrictModalOpen}
+        onClose={() => setIsDistrictModalOpen(false)}
+        selectedDistrict={selectedDistrictForApply}
+        districtsList={districts.map((d) => d.districtName)}
+        onSubmitApplication={handleSubmitDistrictApplication}
         lang={lang}
       />
 

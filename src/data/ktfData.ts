@@ -1,4 +1,4 @@
-import { FocusArea, ObjectiveItem, TimelineEvent, GovernanceState, ArchiveFolder } from '../types';
+import { FocusArea, ObjectiveItem, TimelineEvent, GovernanceState, ArchiveFolder, DistrictPresident, DistrictApplication } from '../types';
 
 export const NGO_PROFILE = {
   name: "KARNATAKA THINKERS FORUM (R)",
@@ -417,5 +417,76 @@ export const ARCHIVE_FOLDERS: ArchiveFolder[] = [
       { id: "f-802", name: "Old Member Registers (Historical).pdf", type: "PDF", date: "2012", status: "Archived", description: "Original founding sign-up records", size: "1.4 MB" },
       { id: "f-803", name: "Expired Statutory Records.pdf", type: "PDF", status: "Archived", description: "Superseded administrative filings", size: "2.1 MB" }
     ]
+  }
+];
+
+export const KARNATAKA_DISTRICTS_INITIAL: DistrictPresident[] = [
+  { districtId: "dharwad", districtName: "Dharwad", districtNameKannada: "ಧಾರವಾಡ", division: "Belagavi", presidentName: "Shri Panduranga H. Neeralakeri", status: "Appointed", appointedDate: "06 Jun 2012", contactEmail: "dharwad.ktf@gmail.com" },
+  { districtId: "bengaluru-urban", districtName: "Bengaluru Urban", districtNameKannada: "ಬೆಂಗಳೂರು ನಗರ", division: "Bengaluru", presidentName: "Dr. Yamanappa Balvanthgol", status: "Appointed", appointedDate: "15 Jan 2018", contactEmail: "bengaluru.ktf@gmail.com" },
+  { districtId: "mysuru", districtName: "Mysuru", districtNameKannada: "ಮೈಸೂರು", division: "Mysuru", presidentName: "Prof. K. R. Siddaramaiah", status: "Appointed", appointedDate: "20 Mar 2021", contactEmail: "mysuru.ktf@gmail.com" },
+  { districtId: "belagavi", districtName: "Belagavi", districtNameKannada: "ಬೆಳಗಾವಿ", division: "Belagavi", presidentName: "Adv. Suresh V. Patil", status: "Appointed", appointedDate: "10 Aug 2022", contactEmail: "belagavi.ktf@gmail.com" },
+  { districtId: "kalaburagi", districtName: "Kalaburagi", districtNameKannada: "ಕಲಬುರಗಿ", division: "Kalaburagi", presidentName: "Dr. Basavaraj S. Ankalagi", status: "Appointed", appointedDate: "05 Nov 2023", contactEmail: "kalaburagi.ktf@gmail.com" },
+
+  // Vacant districts awaiting President applications
+  { districtId: "bagalkote", districtName: "Bagalkote", districtNameKannada: "ಬಾಗಲಕೋಟೆ", division: "Belagavi", status: "Vacant" },
+  { districtId: "ballari", districtName: "Ballari", districtNameKannada: "ಬಳ್ಳಾರಿ", division: "Kalaburagi", status: "Vacant" },
+  { districtId: "bengaluru-rural", districtName: "Bengaluru Rural", districtNameKannada: "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ", division: "Bengaluru", status: "Vacant" },
+  { districtId: "bidar", districtName: "Bidar", districtNameKannada: "ಬೀದರ್", division: "Kalaburagi", status: "Vacant" },
+  { districtId: "chamarajanagara", districtName: "Chamarajanagara", districtNameKannada: "ಚಾಮರಾಜನಗರ", division: "Mysuru", status: "Vacant" },
+  { districtId: "chikkaballapura", districtName: "Chikkaballapura", districtNameKannada: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ", division: "Bengaluru", status: "Vacant" },
+  { districtId: "chikkamagaluru", districtName: "Chikkamagaluru", districtNameKannada: "ಚಿಕ್ಕಮಗಳೂರು", division: "Mysuru", status: "Vacant" },
+  { districtId: "chitradurga", districtName: "Chitradurga", districtNameKannada: "ಚಿತ್ರದುರ್ಗ", division: "Bengaluru", status: "Vacant" },
+  { districtId: "dakshina-kannada", districtName: "Dakshina Kannada", districtNameKannada: "ದಕ್ಷಿಣ ಕನ್ನಡ", division: "Mysuru", status: "Vacant" },
+  { districtId: "davanagere", districtName: "Davanagere", districtNameKannada: "ದಾವಣಗೆರೆ", division: "Bengaluru", status: "Vacant" },
+  { districtId: "gadag", districtName: "Gadag", districtNameKannada: "ಗದಗ", division: "Belagavi", status: "Vacant" },
+  { districtId: "hassan", districtName: "Hassan", districtNameKannada: "ಹಾಸನ", division: "Mysuru", status: "Vacant" },
+  { districtId: "haveri", districtName: "Haveri", districtNameKannada: "ಹಾವೇರಿ", division: "Belagavi", status: "Vacant" },
+  { districtId: "kodagu", districtName: "Kodagu", districtNameKannada: "ಕೊಡಗು", division: "Mysuru", status: "Vacant" },
+  { districtId: "kolar", districtName: "Kolar", districtNameKannada: "ಕೋಲಾರ", division: "Bengaluru", status: "Vacant" },
+  { districtId: "koppal", districtName: "Koppal", districtNameKannada: "ಕೊಪ್ಪಳ", division: "Kalaburagi", status: "Vacant" },
+  { districtId: "mandya", districtName: "Mandya", districtNameKannada: "ಮಂಡ್ಯ", division: "Mysuru", status: "Vacant" },
+  { districtId: "raichur", districtName: "Raichur", districtNameKannada: "ರಾಯಚೂರು", division: "Kalaburagi", status: "Vacant" },
+  { districtId: "ramanagara", districtName: "Ramanagara", districtNameKannada: "ರಾಮನಗರ", division: "Bengaluru", status: "Vacant" },
+  { districtId: "shivamogga", districtName: "Shivamogga", districtNameKannada: "ಶಿವಮೊಗ್ಗ", division: "Bengaluru", status: "Vacant" },
+  { districtId: "tumakuru", districtName: "Tumakuru", districtNameKannada: "ತುಮಕೂರು", division: "Bengaluru", status: "Vacant" },
+  { districtId: "udupi", districtName: "Udupi", districtNameKannada: "ಉಡುಪಿ", division: "Mysuru", status: "Vacant" },
+  { districtId: "uttara-kannada", districtName: "Uttara Kannada", districtNameKannada: "ಉತ್ತರ ಕನ್ನಡ", division: "Belagavi", status: "Vacant" },
+  { districtId: "vijayanagara", districtName: "Vijayanagara", districtNameKannada: "ವಿಜಯನಗರ", division: "Kalaburagi", status: "Vacant" },
+  { districtId: "vijayapura", districtName: "Vijayapura", districtNameKannada: "ವಿಜಯಪುರ", division: "Belagavi", status: "Vacant" },
+  { districtId: "yadgir", districtName: "Yadgir", districtNameKannada: "ಯಾದಗಿರಿ", division: "Kalaburagi", status: "Vacant" }
+];
+
+export const INITIAL_DISTRICT_APPLICATIONS: DistrictApplication[] = [
+  {
+    id: "app-101",
+    districtName: "Shivamogga",
+    fullName: "Ramesh N. Gowda",
+    gender: "Male",
+    age: 42,
+    email: "ramesh.shivamogga@gmail.com",
+    phone: "+91 98450 12345",
+    address: "Gandhi Nagar, Shivamogga",
+    cityTaluk: "Shivamogga City",
+    qualification: "LL.B., M.A. in Political Science",
+    pastExperience: "15 years of social work and legal aid advocacy in Malnad region. Organized rural youth literacy camps.",
+    purposeAndIntent: "To establish active KTF taluk committees across Shivamogga district and drive environmental and consumer rights awareness.",
+    submittedDate: "01 Aug 2026",
+    status: "Pending"
+  },
+  {
+    id: "app-102",
+    districtName: "Udupi",
+    fullName: "Dr. Lakshmi B. Bhat",
+    gender: "Female",
+    age: 38,
+    email: "lakshmi.udupi@gmail.com",
+    phone: "+91 97412 67890",
+    address: "Manipal Main Road, Udupi",
+    cityTaluk: "Udupi",
+    qualification: "Ph.D. in Sociology",
+    pastExperience: "Former Assistant Professor and active coordinator for coastal community welfare and women's self-help groups.",
+    purposeAndIntent: "Promote research-based public advocacy, youth leadership, and constitutional literacy in coastal Karnataka.",
+    submittedDate: "02 Aug 2026",
+    status: "Pending"
   }
 ];

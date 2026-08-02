@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { KtfLogo } from './KtfLogo';
-import { Menu, X, Globe, HeartHandshake, FileText, Users, Building, Scale, Lock, LogOut, ShieldCheck } from 'lucide-react';
+import { Menu, X, Globe, HeartHandshake, FileText, Users, Building, Scale, Lock, LogOut, ShieldCheck, Award } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: string;
@@ -31,6 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'overview', label: lang === 'KN' ? 'ಮುಖಪುಟ' : 'Overview', icon: Building },
     { id: 'focus-areas', label: lang === 'KN' ? '5 ಪ್ರಮುಖ ಕ್ಷೇತ್ರಗಳು' : '5 Focus Areas', icon: Scale },
     { id: 'objectives', label: lang === 'KN' ? 'ಉದ್ದೇಶಗಳು' : '13 Objectives', icon: FileText },
+    { id: 'districts', label: lang === 'KN' ? 'ಜಿಲ್ಲಾಧ್ಯಕ್ಷರು' : 'District Presidents', icon: Award },
     { id: 'timeline', label: lang === 'KN' ? 'ಇತಿಹಾಸ & ಸಾಧನೆಗಳು' : 'History & Timeline', icon: FileText, isProtected: true },
     { id: 'governance', label: lang === 'KN' ? 'ಆಡಳಿತ ಮಂಡಳಿ' : 'Governance', icon: Users },
     { id: 'archive', label: lang === 'KN' ? 'ಡಿಜಿಟಲ್ ದಾಖಲೆಗಳು' : 'Digital Archive', icon: FileText, isProtected: true },
