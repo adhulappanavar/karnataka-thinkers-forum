@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
@@ -20,121 +22,199 @@ body {
   transition-duration: 200ms;
 }
 
-/* 1. Classic Dark (Default) */
+/* ==========================================
+   1. Classic Dark (Default Slate 900 / Gold)
+   ========================================== */
 html[data-theme="classic-dark"] {
   --theme-bg: #0f172a;
   --theme-text: #f8fafc;
 }
 
-/* 2. Clean Light Theme */
+/* ==========================================
+   2. Clean Light Theme (Pristine White & Slate)
+   ========================================== */
 html[data-theme="clean-light"] {
   --theme-bg: #f8fafc;
   --theme-text: #0f172a;
 }
 
 html[data-theme="clean-light"] body {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
 }
 
-/* 3. Royal Karnataka (Maroon & Saffron Dark) */
+/* ==========================================
+   3. Royal Karnataka (Maroon & Saffron Dark)
+   ========================================== */
 html[data-theme="royal-dark"] {
   --theme-bg: #18080c;
   --theme-text: #fff1f2;
 }
 
-html[data-theme="royal-dark"] .dark\:bg-slate-900 {
+html[data-theme="royal-dark"] body {
+  background-color: #18080c !important;
+  color: #fff1f2 !important;
+}
+
+html[data-theme="royal-dark"] .dark\:bg-slate-900,
+html[data-theme="royal-dark"] [class*="bg-slate-900"] {
   background-color: #240c13 !important;
 }
 
-html[data-theme="royal-dark"] .dark\:bg-slate-950 {
-  background-color: #18080c !important;
+html[data-theme="royal-dark"] .dark\:bg-slate-950,
+html[data-theme="royal-dark"] [class*="bg-slate-950"] {
+  background-color: #150609 !important;
 }
 
-html[data-theme="royal-dark"] .dark\:bg-slate-800 {
-  background-color: #33131c !important;
+html[data-theme="royal-dark"] .dark\:bg-slate-800,
+html[data-theme="royal-dark"] [class*="bg-slate-800"] {
+  background-color: #38131e !important;
 }
 
-html[data-theme="royal-dark"] .dark\:border-slate-800 {
-  border-color: rgba(249, 115, 22, 0.25) !important;
+html[data-theme="royal-dark"] [class*="from-slate-900"] {
+  --tw-gradient-from: #150609 !important;
+  --tw-gradient-to: #240c13 !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
-html[data-theme="royal-dark"] .dark\:border-slate-700 {
-  border-color: rgba(249, 115, 22, 0.35) !important;
+html[data-theme="royal-dark"] [class*="to-slate-950"] {
+  --tw-gradient-to: #150609 !important;
 }
 
-/* 4. Emerald Forum (Forest Emerald Dark) */
+html[data-theme="royal-dark"] [class*="via-slate-900"] {
+  --tw-gradient-via: #240c13 !important;
+}
+
+html[data-theme="royal-dark"] [class*="border-slate-800"] {
+  border-color: rgba(249, 115, 22, 0.3) !important;
+}
+
+html[data-theme="royal-dark"] [class*="border-slate-700"] {
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+/* ==========================================
+   4. Emerald Forum (Forest Emerald Dark)
+   ========================================== */
 html[data-theme="emerald-dark"] {
   --theme-bg: #061a14;
   --theme-text: #ecfdf5;
 }
 
-html[data-theme="emerald-dark"] .dark\:bg-slate-900 {
+html[data-theme="emerald-dark"] body {
+  background-color: #061a14 !important;
+  color: #ecfdf5 !important;
+}
+
+html[data-theme="emerald-dark"] .dark\:bg-slate-900,
+html[data-theme="emerald-dark"] [class*="bg-slate-900"] {
   background-color: #0c2b21 !important;
 }
 
-html[data-theme="emerald-dark"] .dark\:bg-slate-950 {
+html[data-theme="emerald-dark"] .dark\:bg-slate-950,
+html[data-theme="emerald-dark"] [class*="bg-slate-950"] {
   background-color: #051812 !important;
 }
 
-html[data-theme="emerald-dark"] .dark\:bg-slate-800 {
+html[data-theme="emerald-dark"] .dark\:bg-slate-800,
+html[data-theme="emerald-dark"] [class*="bg-slate-800"] {
   background-color: #133a2d !important;
 }
 
-html[data-theme="emerald-dark"] .dark\:border-slate-800 {
-  border-color: rgba(16, 185, 129, 0.25) !important;
+html[data-theme="emerald-dark"] [class*="from-slate-900"] {
+  --tw-gradient-from: #051812 !important;
+  --tw-gradient-to: #0c2b21 !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
-html[data-theme="emerald-dark"] .dark\:border-slate-700 {
-  border-color: rgba(16, 185, 129, 0.35) !important;
+html[data-theme="emerald-dark"] [class*="to-slate-950"] {
+  --tw-gradient-to: #051812 !important;
 }
 
-/* 5. Midnight Sapphire (Indigo Ocean Dark) */
+html[data-theme="emerald-dark"] [class*="via-slate-900"] {
+  --tw-gradient-via: #0c2b21 !important;
+}
+
+html[data-theme="emerald-dark"] [class*="border-slate-800"] {
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+html[data-theme="emerald-dark"] [class*="border-slate-700"] {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+/* ==========================================
+   5. Midnight Sapphire (Indigo Ocean Dark)
+   ========================================== */
 html[data-theme="sapphire-dark"] {
   --theme-bg: #090d1e;
   --theme-text: #f0f9ff;
 }
 
-html[data-theme="sapphire-dark"] .dark\:bg-slate-900 {
+html[data-theme="sapphire-dark"] body {
+  background-color: #090d1e !important;
+  color: #f0f9ff !important;
+}
+
+html[data-theme="sapphire-dark"] .dark\:bg-slate-900,
+html[data-theme="sapphire-dark"] [class*="bg-slate-900"] {
   background-color: #111836 !important;
 }
 
-html[data-theme="sapphire-dark"] .dark\:bg-slate-950 {
+html[data-theme="sapphire-dark"] .dark\:bg-slate-950,
+html[data-theme="sapphire-dark"] [class*="bg-slate-950"] {
   background-color: #080c1d !important;
 }
 
-html[data-theme="sapphire-dark"] .dark\:bg-slate-800 {
+html[data-theme="sapphire-dark"] .dark\:bg-slate-800,
+html[data-theme="sapphire-dark"] [class*="bg-slate-800"] {
   background-color: #18234a !important;
 }
 
-html[data-theme="sapphire-dark"] .dark\:border-slate-800 {
-  border-color: rgba(56, 189, 248, 0.25) !important;
+html[data-theme="sapphire-dark"] [class*="from-slate-900"] {
+  --tw-gradient-from: #080c1d !important;
+  --tw-gradient-to: #111836 !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
-html[data-theme="sapphire-dark"] .dark\:border-slate-700 {
-  border-color: rgba(56, 189, 248, 0.35) !important;
+html[data-theme="sapphire-dark"] [class*="to-slate-950"] {
+  --tw-gradient-to: #080c1d !important;
 }
 
-/* 6. Warm Sandstone Light Theme */
+html[data-theme="sapphire-dark"] [class*="via-slate-900"] {
+  --tw-gradient-via: #111836 !important;
+}
+
+html[data-theme="sapphire-dark"] [class*="border-slate-800"] {
+  border-color: rgba(56, 189, 248, 0.3) !important;
+}
+
+html[data-theme="sapphire-dark"] [class*="border-slate-700"] {
+  border-color: rgba(56, 189, 248, 0.4) !important;
+}
+
+/* ==========================================
+   6. Warm Sandstone Light Theme (Ivory & Terracotta)
+   ========================================== */
 html[data-theme="sandstone-light"] {
   --theme-bg: #faf8f5;
   --theme-text: #1c1917;
 }
 
 html[data-theme="sandstone-light"] body {
-  background-color: #faf8f5;
-  color: #1c1917;
+  background-color: #faf8f5 !important;
+  color: #1c1917 !important;
 }
 
-html[data-theme="sandstone-light"] .bg-slate-50 {
+html[data-theme="sandstone-light"] [class*="bg-slate-50"] {
   background-color: #f4efe8 !important;
 }
 
-html[data-theme="sandstone-light"] .bg-white {
+html[data-theme="sandstone-light"] [class*="bg-white"] {
   background-color: #fffdfa !important;
 }
 
-html[data-theme="sandstone-light"] .border-slate-200 {
+html[data-theme="sandstone-light"] [class*="border-slate-200"] {
   border-color: #e6dfd5 !important;
 }
 
