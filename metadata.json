@@ -1,0 +1,6 @@
+{
+  "name": "Karnataka Thinkers Forum (R)",
+  "description": "Official portal for Karnataka Thinkers Forum (R), a registered social NGO in Dharwad dedicated to legal awareness, governance, human rights, research, and community development.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
