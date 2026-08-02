@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { KtfLogo } from './KtfLogo';
-import { Menu, X, Globe, HeartHandshake, FileText, Users, Building, Scale } from 'lucide-react';
+import { Menu, X, Globe, HeartHandshake, FileText, Users, Building, Scale, Lock, LogOut, ShieldCheck } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: string;
@@ -9,6 +9,9 @@ interface NavbarProps {
   setLang: (lang: 'EN' | 'KN') => void;
   onOpenMembership: () => void;
   onOpenVoiceModal: () => void;
+  isAdminAuthenticated: boolean;
+  onOpenAdminLogin: () => void;
+  onAdminLogout: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -18,6 +21,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   setLang,
   onOpenMembership,
   onOpenVoiceModal,
+  isAdminAuthenticated,
+  onOpenAdminLogin,
+  onAdminLogout,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -27,10 +33,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'objectives', label: lang === 'KN' ? 'ಉದ್ದೇಶಗಳು' : '13 Objectives', icon: FileText },
     { id: 'timeline', label: lang === 'KN' ? 'ಇತಿಹಾಸ & ಸಾಧನೆಗಳು' : 'History & Timeline', icon: FileText },
     { id: 'governance', label: lang === 'KN' ? 'ಆಡಳಿತ ಮಂಡಳಿ' : 'Governance', icon: Users },
-    { id: 'archive', label: lang === 'KN' ? 'ಡಿಜಿಟಲ್ ದಾಖಲೆಗಳು' : 'Digital Archive', icon: FileText },
+    { id: 'archive', label: lang === 'KN' ? 'ಡಿಜಿಟಲ್ ದಾಖಲೆಗಳು' : 'Digital Archive', icon: FileText, isProtected: true },
   ];
 
-  const handleNavClick = (id: string) => {
+  const handleNavClick = (id: string, isProtected?: boolean) => {
+    if (isProtected && !isAdminAuthenticated) {
+      onOpenAdminLogin();
+      return;
+    }
     setActiveSection(id);
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
@@ -59,6 +69,32 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               ✉️ karnatakathinkersforum.india@gmail.com
             </a>
+
+            {/* Admin Login / Logout Badge in Top Strip */}
+            {isAdminAuthenticated ? (
+              <div className="flex items-center gap-2 bg-emerald-950/80 text-emerald-200 px-2.5 py-0.5 rounded border border-emerald-500/40 font-bold">
+                <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                <span>Admin Active</span>
+                <button
+                  onClick={onAdminLogout}
+                  className="ml-1 text-[10px] text-amber-200 hover:underline flex items-center gap-0.5"
+                  title="Log out from Admin mode"
+                >
+                  <LogOut className="w-3 h-3" />
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onOpenAdminLogin}
+                className="inline-flex items-center gap-1 bg-amber-950/60 hover:bg-amber-950 px-2 py-0.5 rounded font-medium text-amber-200 transition-colors border border-amber-500/30"
+                title="Admin Portal Login"
+              >
+                <Lock className="w-3 h-3" />
+                <span>Admin Login</span>
+              </button>
+            )}
+
             <button
               onClick={() => setLang(lang === 'EN' ? 'KN' : 'EN')}
               className="inline-flex items-center gap-1 bg-white/10 hover:bg-white/20 px-2 py-0.5 rounded font-medium text-amber-100 transition-colors border border-white/20"
@@ -86,17 +122,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           <nav className="hidden xl:flex items-center gap-1">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
+              const isLocked = item.isProtected && !isAdminAuthenticated;
               return (
                 <button
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
+                  onClick={() => handleNavClick(item.id, item.isProtected)}
                   className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
                     isActive
                       ? 'bg-amber-100 text-amber-900 dark:bg-amber-950/60 dark:text-amber-300 font-bold shadow-xs'
                       : 'text-slate-700 hover:text-amber-800 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-amber-300 dark:hover:bg-slate-800'
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {isLocked && (
+                    <Lock className="w-3 h-3 text-amber-600 dark:text-amber-400 shrink-0" />
+                  )}
                 </button>
               );
             })}
